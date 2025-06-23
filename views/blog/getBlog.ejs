@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= data.title %></title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <%- include('../nav.ejs'); %>
+  <div class="w-full h-full bg-white dark:bg-gray-800">
+
+    <h1 class="w-[92%] mx-auto lg:text-4xl md:text-3xl xs:text-2xl text-center font-serif font-semibold pb-4 pt-8 dark:text-white">
+      <%= data.title %>
+    </h1>
+
+    <!-- Blog Info -->
+    <div class="w-[90%] mx-auto flex md:gap-4 xs:gap-2 justify-center items-center pt-4">
+      <div class="flex gap-2 items-center">
+        <!-- You can replace this img src with dynamic author avatar if you want -->
+        <img src="https://lh3.googleusercontent.com/a/ACg8ocIexhmmTS8LcwWo1fPGY5Fl3KXpd-JuBE_Gj56P3rUR2g=s96-c" alt="Blogger Profile" class="md:w-[2.2rem] md:h-[2.2rem] xs:w-[2rem] xs:h-[2rem] rounded-full" />
+        <h2 class="text-sm font-semibold dark:text-white"><%= data.author || data.name || "Admin" %></h2>
+      </div>
+
+      <div class="dark:text-gray-500">|</div>
+      <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-400"><%= data.date || "June, 2025" %></h3>
+
+      <div class="dark:text-gray-500">|</div>
+      <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400">5 MIN READ</h4>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="py-6 bg-white dark:bg-gray-800">
+      <div class="md:w-[80%] xs:w-[90%] mx-auto pt-4">
+        <p class="mx-auto text-md dark:text-gray-300">
+          <%= data.content %>
+        </p>
+      </div>
+    </div>
+
+  </div>
+<% if (userId && userId === data.userid) { %>
+  <div class="flex justify-center gap-4 mt-8">
+    <!-- Edit Button -->
+    <a href="/edit/<%= data.id %>"
+       class="inline-block px-6 py-2 text-white bg-blue-600 rounded-full font-medium text-sm hover:bg-blue-700 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+      ✏️ Edit Post
+    </a>
+
+    <!-- Delete Button (form method POST) -->
+    <form action="/delete/<%= data.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?')">
+      <button type="submit"
+              class="inline-block px-6 py-2 text-white bg-red-600 rounded-full font-medium text-sm hover:bg-red-700 shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+        🗑️ Delete Post
+      </button>
+    </form>
+  </div>
+<% } %>
+
+
+</body>
+</html>

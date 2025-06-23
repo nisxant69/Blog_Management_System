@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add New Blog</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+<%- include('../nav.ejs'); %>
+  <div class="max-w-3xl mx-auto p-8 bg-white dark:bg-gray-800 shadow-lg mt-10 rounded-lg">
+    <h1 class="text-2xl font-bold mb-6 dark:text-white">📝 Add New Blog</h1>
+
+    <form action="/add" method="POST" class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-white">Title</label>
+        <input type="text" name="title" required
+               class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-white">Short Description</label>
+        <textarea name="description" rows="2" required
+                  class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-white">Content</label>
+        <textarea name="content" rows="10" required
+                  class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white"></textarea>
+      </div>
+
+      <button type="submit"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition duration-300">
+        ➕ Publish Blog
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>
